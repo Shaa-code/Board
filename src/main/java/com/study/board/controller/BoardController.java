@@ -28,4 +28,9 @@ public class BoardController {
     public String boardWriteForm(){
         return "boardwrite";
     }
+
+    @GetMapping("board/lists")
+    public String boardList(){
+        return "boardlist";
+    }
 }
