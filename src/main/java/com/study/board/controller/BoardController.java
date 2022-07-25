@@ -18,7 +18,7 @@ public class BoardController {
 
 
     @PostMapping("/board/writepro")
-    public String boardWriteDo(Board board){
+    public String boardWriteDo(Board board) {
 
         boardService.write(board);
 
@@ -26,15 +26,27 @@ public class BoardController {
     }
 
     @GetMapping("/board/write")
-    public String boardWriteForm(){
+    public String boardWriteForm() {
         return "boardwrite";
     }
 
     @GetMapping("board/lists")
-    public String boardList(Model model){
+    public String boardList(Model model) {
 
-        model.addAttribute("list",boardService.boardList());
+        model.addAttribute("list", boardService.boardList());
 
         return "boardlist";
+    }
+
+    @GetMapping("board/view")
+    public String boardView(Model model, Integer id) {
+        model.addAttribute("article", boardService.boardView(id));
+        return "boardview";
+    }
+
+    @GetMapping("board/delete")
+    public String boardDelete(Integer id) {
+        boardService.boardDelete(id);
+        return "redirect:/board/lists";
     }
 }
